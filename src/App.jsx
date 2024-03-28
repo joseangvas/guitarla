@@ -5,7 +5,8 @@ import {db} from './data/db';
 
 function App() {
 
-  const [data, setData]  = useState(db);
+  const [data, setData]  = useState(db)
+  const [cart, setCart]= useState([])
 
   return (
     <>
