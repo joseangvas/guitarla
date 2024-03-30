@@ -8,6 +8,7 @@ function App() {
   const [data, setData]  = useState(db)
   const [cart, setCart]= useState([])
 
+  // Agregar  a la cesta de compras
   function addToCart(item) {
     const itemExists =  cart.findIndex(guitar => guitar.id === item.id);
      if (itemExists >= 0) {    // Verificar si Existe en el Carrito
@@ -21,10 +22,16 @@ function App() {
     }
   }
 
+  // Eliminar  de la lista de productos y del carrito
+  function removeFromCart(id) {
+    setCart(prevCart => prevCart.filter(guitar => guitar.id !== id))
+  }
+
   return (
     <>
       <Header 
-        cart={cart}
+        cart = {cart} 
+        removeFromCart = {removeFromCart}
       />
 
       <main className="container-xl mt-5">
@@ -32,12 +39,12 @@ function App() {
 
         <div className="row mt-5">
           {data.map((guitar) => (
-              <Guitar
-                key={guitar._id}
-                guitar={guitar}
-                setCart={setCart}
-                addToCart={addToCart}
-              />
+            <Guitar
+              key={guitar._id}
+              guitar={guitar}
+              setCart={setCart}
+              addToCart={addToCart}
+            />
           ))}
         </div>
       </main>
