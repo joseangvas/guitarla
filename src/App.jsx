@@ -10,12 +10,12 @@ function App() {
 
   function addToCart(item) {
     const itemExists =  cart.findIndex(guitar => guitar.id === item.id);
-     if (itemExists >= 0) {    // Existe en el Carrito
+     if (itemExists >= 0) {    // Verificar si Existe en el Carrito
       const updatedCart = [...cart];   // Crea una copia del carrito actual para no mutar cart.
       updatedCart[itemExists].quantity ++;
       setCart(updatedCart);
-      console.log('Item already in the cart')  
-    } else{
+      console.log('Esta Guitarra ya está en el Carrito')  
+    } else {
       item.quantity = 1
       setCart([...cart, item])
     }
