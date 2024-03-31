@@ -1,15 +1,23 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Guitar from './components/Guitar';
 import Header from './components/Header'
 import {db} from './data/db';
 
 function App() {
+  const initialCart = () => {
+    const localStorageCart = localStorage.getItem('cart')  // Obtener  el carrito de compras del Local Storage
+    return localStorageCart ? JSON.parse(localStorageCart) : []; // Si existe algo  en el local storage lo parsea y devuelve el arreglo. De lo contrario, devuelve un arreglo vacío
+  }
 
   const [data, setData]  = useState(db)
-  const [cart, setCart]= useState([])
+  const [cart, setCart]= useState(initialCart)
 
   const MIN_ITEMS = 1
   const MAX_ITEMS = 5
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart)); // Convierte arreglo cart en String y lo almacena
+  }, [cart])
 
   //* Agregar  a la cesta de compras
   function addToCart(item) {
@@ -55,7 +63,7 @@ function App() {
     setCart(updatedCart)
   }
 
-  function clearCart() {
+  function clearCart(e) {
     setCart([])
   }
 
