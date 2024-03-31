@@ -1,7 +1,7 @@
 import {useMemo} from 'react'
 
-export default function Header({ cart, removeFromCart }) {
-  // State Derivado
+export default function Header({ cart, removeFromCart, increaseQuantity }) {
+  //* State Derivado
   const isEmpty = useMemo(() => cart.length === 0, [cart]);
   const cartTotal = useMemo(
     () => cart.reduce((total, item) => total + item.quantity * item.price, 0),
@@ -63,15 +63,20 @@ export default function Header({ cart, removeFromCart }) {
                                 -
                               </button>
                               {guitar.quantity}
-                              <button type="button" className="btn btn-dark">
+                              <button 
+                                type="button" 
+                                className="btn btn-dark"
+                                onClick={() => increaseQuantity(guitar.id)}
+                                >
                                 +
                               </button>
                             </td>
                             <td>
-                              <button 
-                                className="btn btn-danger" 
+                              <button
+                                className="btn btn-danger"
                                 type="button"
-                                onClick={() => removeFromCart(guitar.id)}>
+                                onClick={() => removeFromCart(guitar.id)}
+                              >
                                 X
                               </button>
                             </td>
