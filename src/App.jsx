@@ -9,14 +9,14 @@ function App() {
     return localStorageCart ? JSON.parse(localStorageCart) : []; // Si existe algo  en el local storage lo parsea y devuelve el arreglo. De lo contrario, devuelve un arreglo vacío
   }
 
-  const [data, setData]  = useState(db)
+  const [data]  = useState(db)
   const [cart, setCart]= useState(initialCart)
 
   const MIN_ITEMS = 1
   const MAX_ITEMS = 5
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart)); // Convierte arreglo cart en String y lo almacena
+    localStorage.setItem('cart', JSON.stringify(cart)); // Convierte arreglo cart en String y lo almacena en localStorage
   }, [cart])
 
   //* Agregar  a la cesta de compras
