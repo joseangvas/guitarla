@@ -38,6 +38,7 @@ export function useCart() {
     setCart((prevCart) => prevCart.filter((guitar) => guitar.id !== id));
   }
 
+  //* Reducir Cantidad de Guitarras en el Carrito
   function decreaseQuantity(id) {
     const updatedCart = cart.map((item) => {
       if (item.id === id && item.quantity > MIN_ITEMS) {
@@ -50,6 +51,7 @@ export function useCart() {
     setCart(updatedCart);
   }
 
+  //* Aumentar la cantidad de guitarras en el Carrito
   function increaseQuantity(id) {
     const updatedCart = cart.map((item) => {
       if (item.id === id && item.quantity < MAX_ITEMS) {
@@ -62,17 +64,19 @@ export function useCart() {
     setCart(updatedCart);
   }
 
+  //* Limpiar el Carrito
   function clearCart(e) {
     setCart([]);
   }
+  
+  return {
+      data,
+      cart,
+      addToCart,
+      removeFromCart,
+      increaseQuantity,
+      decreaseQuantity,
+      clearCart
+  }
 }
 
-return {
-    data,
-    cart,
-    addToCart,
-    removeFromCart,
-    increaseQuantity,
-    decreaseQuantity,
-    clearCart
-}
