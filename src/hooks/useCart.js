@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { db } from "../data/db";
 
 export function useCart() {
   const initialCart = () => {
@@ -66,4 +67,12 @@ export function useCart() {
   }
 }
 
-return {};
+return {
+    data,
+    cart,
+    addToCart,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    clearCart
+}

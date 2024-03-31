@@ -1,10 +1,17 @@
 import Guitar from './components/Guitar';
 import Header from './components/Header'
-import {db} from './data/db';
 import {useCart} from './hooks/useCart.js'
 
 function App() {
-  const {} = useCart()
+  const {
+    data,
+    cart,
+    addToCart,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    clearCart,
+  } = useCart();
 
   return (
     <>
@@ -24,7 +31,6 @@ function App() {
             <Guitar
               key={guitar._id}
               guitar={guitar}
-              setCart={setCart}
               addToCart={addToCart}
             />
           ))}
